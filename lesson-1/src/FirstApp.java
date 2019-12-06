@@ -93,7 +93,7 @@ public class FirstApp {
         int i = 2147483647;
         long l = 9223372036854775807L;
 
-        float f = 1.5F;
+        float f = 1.6F;
         double d = -2.6;
 
         char ch = 'A';
