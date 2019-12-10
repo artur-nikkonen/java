@@ -13,13 +13,13 @@ public class ThirdApp {
 
     public static void main(String[] args) {
         do {
-            RunGame();
-        } while (Rapeat());
+            playGame();
+        } while (playAgain());
 
-        ExitGame();
+        exitGame();
     }
 
-    private static void ExitGame() {
+    private static void exitGame() {
         System.out.println("Конец игры");
         sc.close();
     }
@@ -27,7 +27,7 @@ public class ThirdApp {
     /**
      * Игра по угадыванию числа
      */
-    private static void RunGame() {
+    private static void playGame() {
         Random random = new Random();
         int secretNumber = random.nextInt(10); // число, которое надо угадать
         int attempt = 1; //номер попытки
@@ -57,7 +57,7 @@ public class ThirdApp {
      * Спрашиваем у пользователя, нужно ли повторить игру.
      */
 
-    private static boolean Rapeat() {
+    private static boolean playAgain() {
         int answer;
         do {
             System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
