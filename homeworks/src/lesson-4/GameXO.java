@@ -237,12 +237,10 @@ public class GameXO {
     private static void aiSmartStep() {
 
         if (tryMakeBotWinStep()) return;
-
         if (tryCloseHumanWinStep()) return;
-
         if (tryMakeBotForkStep()) return;
-
         if (tryCloseHumanForkStep()) return;
+
         //угроз нет. Ходим случайно.
         if (showAiMessages)
             System.out.println("Сообщение бота - Угроз и возможностей выйграть не найдено. Случайный ход.");
