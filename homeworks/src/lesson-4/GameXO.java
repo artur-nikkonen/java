@@ -235,19 +235,23 @@ public class GameXO {
      * Если ничего не найдено, то ходит случайный ход.
      */
     private static void aiSmartStep() {
-        //пытаемся сделать победный ход
+
         if (tryMakeBotWinStep()) return;
-        //пытаемся закрыть победный ход человека
+
         if (tryCloseHumanWinStep()) return;
-        //пытаемся сделать вилку
+
         if (tryMakeBotForkStep()) return;
-        //пытаемся закрыть вилку человека
+
         if (tryCloseHumanForkStep()) return;
         //угроз нет. Ходим случайно.
-        if (showAiMessages) System.out.println("Сообщение бота - Угроз и возможностей выйграть не найдено. Случайный ход.");
-            aiStep();
+        if (showAiMessages)
+            System.out.println("Сообщение бота - Угроз и возможностей выйграть не найдено. Случайный ход.");
+        aiStep();
     }
 
+    /**
+     * Попытка закрыть вилку человека
+     */
     private static boolean tryCloseHumanForkStep() {
         for (int row = 0; row < FIELD_SIZE; row++) {
             for (int col = 0; col < FIELD_SIZE; col++) {
@@ -265,6 +269,9 @@ public class GameXO {
         return false;
     }
 
+    /**
+     * Попытка сделать вилку для бота
+     */
     private static boolean tryMakeBotForkStep() {
         for (int row = 0; row < FIELD_SIZE; row++) {
             for (int col = 0; col < FIELD_SIZE; col++) {
@@ -281,6 +288,9 @@ public class GameXO {
         return false;
     }
 
+    /**
+     * Попытка закрыть победный ход человека
+     */
     private static boolean tryCloseHumanWinStep() {
         for (int row = 0; row < FIELD_SIZE; row++) {
             for (int col = 0; col < FIELD_SIZE; col++) {
@@ -299,6 +309,9 @@ public class GameXO {
         return false;
     }
 
+    /**
+     * Попытка сделать победный ход бота
+     */
     private static boolean tryMakeBotWinStep() {
         for (int row = 0; row < FIELD_SIZE; row++) {
             for (int col = 0; col < FIELD_SIZE; col++) {
@@ -322,7 +335,7 @@ public class GameXO {
     private static boolean checkFork(char dot) {
         //Методы дублируют методы в checkWin с другими условиями успеха
         //В дальнейшем можно обиединить все эти проверки в один метод с дополнительными параметрами шага по вертикили и горизонтали
-        //Не сделал объединение, так как это затрудняет понимание метода и тестирование
+        //Не сделал объединение, так как это затрудняет понимание методов и тестирование
         if (checkForkHorizontal(dot)) return true;
         if (checkForkVertical(dot)) return true;
         if (checkForkMainDiagonal(dot)) return true;
@@ -341,7 +354,8 @@ public class GameXO {
                 if (field[row][col] == DOT_EMPTY) {
                     if (emptyDotBefore && count == WIN_DOTS_COUNT - 1) {
                         //мы нашли вилку: есть пробел до, есть N-1 точек, есть пробел после
-                        if (showAiMessages) System.out.println("Сообщение бота - Найдена вилка по вертикали для " + dot);
+                        if (showAiMessages)
+                            System.out.println("Сообщение бота - Найдена вилка по вертикали для " + dot);
                         return true;
                     } else {
                         //мы не нашли вилкку. обнуляем полсчет.
@@ -372,7 +386,8 @@ public class GameXO {
                 if (field[row][col] == DOT_EMPTY) {
                     if (emptyDotBefore && count == WIN_DOTS_COUNT - 1) {
                         //мы нашли вилку: есть пробел до, есть N-1 точек, есть пробел после
-                        if (showAiMessages) System.out.println("Сообщение бота - Найдена вилка по горизонтали для " + dot);
+                        if (showAiMessages)
+                            System.out.println("Сообщение бота - Найдена вилка по горизонтали для " + dot);
                         return true;
                     } else {
                         //мы не нашли вилкку. обнуляем полсчет.
@@ -407,7 +422,8 @@ public class GameXO {
                 if (field[row][col] == DOT_EMPTY) {
                     if (emptyDotBefore && count == WIN_DOTS_COUNT - 1) {
                         //мы нашли вилку: есть пробел до, есть N-1 точек, есть пробел после
-                        if (showAiMessages) System.out.println("Сообщение бота - Найдена вилка по второй диагонали для " + dot);
+                        if (showAiMessages)
+                            System.out.println("Сообщение бота - Найдена вилка по второй диагонали для " + dot);
                         return true;
                     } else {
                         //мы не нашли вилкку. обнуляем полсчет.
@@ -442,7 +458,8 @@ public class GameXO {
                 if (field[row][col] == DOT_EMPTY) {
                     if (emptyDotBefore && count == WIN_DOTS_COUNT - 1) {
                         //мы нашли вилку: есть пробел до, есть N-1 точек, есть пробел после
-                        if (showAiMessages) System.out.println("Сообщение бота - Найдена вилка по главной диагонали для " + dot);
+                        if (showAiMessages)
+                            System.out.println("Сообщение бота - Найдена вилка по главной диагонали для " + dot);
                         return true;
                     } else {
                         //мы не нашли вилкку. обнуляем полсчет.
