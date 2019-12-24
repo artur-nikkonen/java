@@ -1,3 +1,4 @@
+package lesson_6;
 public class Dog extends Animal {
 
     private static int counter = 0;

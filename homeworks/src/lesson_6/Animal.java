@@ -1,3 +1,4 @@
+package lesson_6;
 public abstract class Animal {
 
     private static int counter = 0;
