@@ -193,6 +193,13 @@ public class GameXO {
         return true;
     }
 
+    private static boolean coordinatesInCorrect(int row, int col, int dot) {
+        if (row < 0 || row > FIELD_SIZE - 1) return false;
+        if (col < 0 || col > FIELD_SIZE - 1) return false;
+        if (field[row][col] != dot) return false;
+        return true;
+    }
+
     private static boolean checkFieldIsFull() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
@@ -242,11 +249,31 @@ public class GameXO {
         if (tryCloseHumanWinStep()) return;
         if (tryMakeBotForkStep()) return;
         if (tryCloseHumanForkStep()) return;
+        //пробуем сделать ход рядом с оппонентом
+        if (tryNearOpponentStep()) return;
 
         //угроз нет. Ходим случайно.
         if (showAiMessages)
             System.out.println("Сообщение бота - Угроз и возможностей выйграть не найдено. Случайный ход.");
         aiStep();
+    }
+
+    private static boolean tryNearOpponentStep() {
+        for (int row = 0; row < FIELD_SIZE; row++) {
+            for (int col = 0; col < FIELD_SIZE; col++) {
+                if (coordinatesIsCorrect(row, col)) {
+                    for (int x = row - 1; x <= row + 1; x++)
+                        for (int y = col - 1; y <= col + 1; y++) {
+                            if (coordinatesInCorrect(x, y, DOT_X)) {
+                                if (showAiMessages) System.out.println("Сообщение бота - Найден ход рядом с " + DOT_X);
+                                field[row][col] = DOT_O;
+                                return true;
+                            }
+                        }
+                }
+            }
+        }
+        return false;
     }
 
     /**
